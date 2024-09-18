@@ -1,0 +1,44 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event,ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class RelogioDigital extends JFrame {
+    private JLabel label1hora;
+
+    public RelogioDigital() {
+        setTitle("relogio Digital");
+        setSize(300, 100);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+
+        label1hora = new JLabel();
+        label1hora.setFont(new Font("Arial", Font.BOLD, 48));
+        label1hora.setHorizontalAlignment(SwingConstants.CENTER);
+        add(label1hora, BorderLayout.CENTER);
+
+        Timer timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                atualizarHora();
+        }
+    });
+    timer.start();
+
+    atualizarHora();
+    }
+    private void atualizarHora() {
+        SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm:ss");
+        String horaAtual = formatoHora.format(new Date());
+        label1hora.setText(horaAtual);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(()-> {
+            RelogioDigital relogio = new RelogioDigital();
+            relogio.setVisible(true);
+        });
+    }
+}
