@@ -1,0 +1,20 @@
+import tkinter as tk
+import time
+
+def atualizar_relogio():
+    hora_atual = time.strftime('%H:%M:%S')
+    relogio.config(text=hora_atual)
+    relogio.after(1000, atualizar_relogio)  # Atualiza a cada 1 segundo
+
+# Cria a janela principal
+janela = tk.Tk()
+janela.title("Relógio Digital")
+
+# Configura a aparência do relógio
+relogio = tk.Label(janela, font=('Arial', 48), bg='black', fg='cyan')
+relogio.pack(padx=20, pady=20)
+
+atualizar_relogio()  # Inicia o relógio
+
+# Inicia o loop da interface gráfica
+janela.mainloop()
